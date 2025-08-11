@@ -1,10 +1,10 @@
-FROM node:alpine
+FROM node:24-bullseye-slim
 
 WORKDIR /code
 
-COPY package.json .
+COPY package.json package-lock.json ./
 
-RUN npm install
+RUN npm ci
 
 COPY . .
 

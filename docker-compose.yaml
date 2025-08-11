@@ -5,5 +5,4 @@ services:
       - 4321:4321
     volumes:
       - .:/code
-      - /code/node_modules
     command: npx astro dev --host
