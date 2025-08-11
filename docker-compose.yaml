@@ -1,0 +1,8 @@
+services:
+  astro-container:
+    build: .
+    ports:
+      - 4321:4321
+    volumes:
+      - .:/code
+    command: npx astro dev --host
