@@ -1,8 +1,9 @@
 services:
   astro-container:
-    build: .
+    image: node:latest
     ports:
       - 4321:4321
     volumes:
-      - .:/code
+      - ${PWD}:/code
+    working_dir: /code
     command: npx astro dev --host
