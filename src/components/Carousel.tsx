@@ -1,40 +1,38 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import "../styles/global.css";
-// import "./general.css";
 
-enum Moving {
+enum CarouselState {
     STATIC,
     MOVING
 }
 
+const { LOCAL_S3_BUCKET } = import.meta.env;
+const URL = `${LOCAL_S3_BUCKET}images/big-beach.jpg`
+
+
 export default function() {
-    const [image, setImageUrl] = useState("null");
-    const [monvingState, setMovingState] = useState(Moving.STATIC);
-
-    const { LOCAL_S3_BUCKET } = import.meta.env;
-
-    const URL = `${LOCAL_S3_BUCKET}images/big-beach.jpg`
+    let [movingState, setMovingState] = useState(CarouselState.STATIC);
 
     useEffect(() => {
-
-    }, [monvingState])
-
-    // Trigger interval
-    useEffect(() => {
-        const TIME: Readonly<Number> = 500;
+        const TIME = 2000;
         const timer = setInterval(() => {
-            
-        }, 500);
+            setMovingState(previousState => 
+                previousState === CarouselState.STATIC ? CarouselState.MOVING : CarouselState.STATIC
+            );
+        }, TIME);
 
-        // Return clean up function
         return () => clearInterval(timer);
-    }, []) // Run once
+    }, [])
 
     return (
         <>
+        <p></p>
         <div className="w-full h-full relative">
-                <img src={URL} alt="Image" className="relative left-0 z-0 transition-all ease-in-out duration-1000"/>
-
+                <img src={URL} 
+                alt="Image"
+                className={`relative left-0 z-0 transition-all ease-in-out duration-1000
+                ${movingState === CarouselState.MOVING ? "left-100" : "left"}`}
+                />
 
                 {/* Bottom description */}
                 <div className="absolute bottom-0 inset-x-0 h-16 z-0 bg-blue-950 text-white">
