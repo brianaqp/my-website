@@ -7,3 +7,4 @@ services:
       - ${PWD}:/code
     working_dir: /code
     command: npx astro dev --host
+    # command: npm install .
