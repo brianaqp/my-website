@@ -1,4 +1,5 @@
 import { use, useEffect, useRef, useState } from "react";
+import { ArrowRight } from "lucide";
 import "../styles/global.css";
 
 const { PUBLIC_API } = import.meta.env;
@@ -19,8 +20,6 @@ export default function() {
     let [animationState, setAnimationState] = useState(AnimationState.IDLE);
 
     let timerRef = useRef<number | null | NodeJS.Timeout>(null);
-
-    const value = <>hola!</>
 
     useEffect(() => {
         timerRef.current = createLocalInterval();
@@ -82,30 +81,26 @@ export default function() {
     }
 
 
+
     return (
         <>
         <p></p>
         <div className="w-full h-full relative overflow-hidden">
-
-            {/* <img src={getUrlWithIndex(imageIndex)} 
-            className={`absolute -left-100 transition-all ease-in-out duration-1000 
-            ${ animationState === AnimationState.MOVING ? "left-0" : ""}`} 
-            /> */}
-
             <img src={getUrlWithIndex(imageIndex)} 
             alt="Image"
+            key={imageIndex}
             className={`relative z-0 left-0 transition-all ease-in-out duration-1000 object-contain
                 ${ animationState === AnimationState.MOVING ? "opacity-0" : "opacity-100" }
                 `}
             />
             {/* Bottom description */}
             <div className="absolute bottom-0 inset-x-0 h-16 z-0 bg-blue-950 text-white">
-                <span>This is my text description</span>
+                <p>Cool text here</p>
             </div>
 
             {/* Left buttom */}
             <div className="absolute left-0 inset-y-16 w-16 bg-blue-950">
-                <p onClick={() => move(Direction.LEFT)}>click me</p>
+                <p onClick={() => move(Direction.LEFT)}></p>
             </div>
 
             {/* Right buttom */}
