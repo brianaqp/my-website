@@ -39,6 +39,7 @@ export default function() {
         }, TIME);
     }
 
+    // Change the symbol to mean the change of the image rather than the image movement. 
     const moveForward = () => {
         setImageIndex(prev => (prev + 1 < images.length ? prev + 1 : 0));
     };
@@ -47,6 +48,9 @@ export default function() {
         setImageIndex(prev => (prev - 1 >= 0 ? prev - 1 : images.length - 1))
     }
 
+    // This functions needs to manage
+    // 1. Animation lifecycle
+    // 2. Image replacement
     const move = (direction: Direction) => {
         setAnimationState(AnimationState.MOVING);
 
@@ -83,7 +87,6 @@ export default function() {
                     ${ animationState === AnimationState.MOVING ? "left-100" : "" }
                     `}
                 />
-
                 {/* Bottom description */}
                 <div className="absolute bottom-0 inset-x-0 h-16 z-0 bg-blue-950 text-white">
                     <span>This is my text description</span>
