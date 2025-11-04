@@ -1,41 +1,33 @@
 ---
 import "../styles/global.css";
-import type { CarouselImage } from "../types/CarouselImages"
 import { Image } from "astro:assets";
-import MeImage from "../assets/me.jpg";
+import SmilingImage from "../assets/smiling.jpg";
+import AboutMe from "../components/aboutme.astro"
 
 ---
 
-<section class="flex flex-col md:flex-row max-w-8/10 mx-auto py-12 gap-6">
+<section class="flex flex-col md:flex-row max-w-8/10 mx-auto py-12 gap-6 h-[500px]">
   <!-- Hero -->
-	<Image src={MeImage} 
+	<Image src={SmilingImage} 
 		alt="Myself and the kamakura buddha statue in the background" 
 		class="w-full md:w-1/2 h-full object-cover rounded-2xl shadow"
 		/>
-    <aside class="w-full md:w-1/2 bg-amber-200 p-6 rounded-2xl shadow">
-      <h1 class="text-2xl font-bold mb-4">Hello, my name is Brian.</h1>
-	  <p>I started my journey in technology as a kid, always messing around with computers.</p>
-	  <br />
-	  <p>
-		That passion led me to finish a bachelors 
-	   	degree in Mechatronics Engineering, where I discovered a strong interest in software development. I began experimenting with 
-	   	some Python scripts, online tutorials, and more.  
-	  </p>
-	  <br />
-	   <p>
- 		Later, I get my first job as SOE on a Shipping Agency. They need it someone capable of translate their
-		old applications into better sofware that can help us deliver faster and safely with strong tools. It help me to gain hand-ons
-		experience in real-world projects, using Python for Destkop development and NodeJS + Angular to deliver their web applications.
-	   </p>
-	   <br />
-	   <p>
-		After completing those projects, I wanted to push myself further and break away from working alone. 
-	   I took the chance to attend a bootcamp in Tokyo, Japan. It was an eye-opening experience where I made lasting friendships, 
-	   learned to work in teams, and developed a true passion for software development.
-	   </p>
-	   <br />
-	   <p>Now, Im actively looking for my next opportunity, excited to contribute, learn, and keep growing as a dev, and as a person.</p>
-      </p>
+    <aside class="w-full md:w-1/2 bg-[#14ac68] p-6 rounded-2xl text-white shadow">
+		<p class="text-3xl">Hi! I'm Brian.</p>
+		<div class="flex h-full justify-around items-center gap-4">
+  <div class="role-card unlocked">
+    <span class="role-title">Software Engineer</span>
+    <span class="role-status text-blue-100">Unlocked!</span>
+  </div>
+  <div class="role-card locked" title="Not unlocked yet!">
+    <span class="role-title">Videogame Creator</span>
+    <span class="role-status hidden group-hover:block text-gray-400">Not unlocked yet!</span>
+  </div>
+  <div class="role-card locked" title="Not unlocked yet!">
+    <span class="role-title">Musician</span>
+    <span class="role-status hidden group-hover:block text-gray-400">Not unlocked yet!</span>
+  </div>
+</div>
     </aside>
 </section>
 
@@ -55,3 +47,30 @@ import MeImage from "../assets/me.jpg";
 	<br />
 </div>
 
+<AboutMe />
+
+<style>
+	@reference "../styles/global.css";
+
+	.role-active {
+		@apply transition-all hover:text-3xl font-bold
+	}
+	.role-card {
+		@apply flex flex-col items-center px-4 py-2 rounded-xl shadow transition-all;
+	}
+	.role-card.unlocked {
+	@apply bg-blue-500 border-2 border-blue-500;
+	}
+	.role-card.locked {
+	@apply bg-gray-400 border-2 border-gray-400 opacity-80 cursor-not-allowed;
+	}
+	.role-title {
+	@apply text-xl font-bold mb-1;
+	}
+	.role-status {
+	@apply text-sm;
+	}
+	.role-card.locked:hover .role-status {
+	@apply block;
+	}
+</style>

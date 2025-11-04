@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+html {
+    @apply bg-gradient-to-r from-[#0C2B4E] to-[#63A361] via-[#31694E]
+}
+
+
 @theme {
     --breakpoint-md: 401px
 }
